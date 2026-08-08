@@ -1,0 +1,137 @@
+{
+  "info": {
+    "name": "Task Manager API",
+    "_postman_id": "f9d7a3c4-0c7f-4d1d-a3e8-3c03ef3b55f8",
+    "description": "Collection for task management REST API operations",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Register User",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"password\": \"StrongPassword123\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/auth/register", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","auth","register"] }
+      }
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"jane@example.com\",\n  \"password\": \"StrongPassword123\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/auth/login", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","auth","login"] }
+      }
+    },
+    {
+      "name": "List Tasks",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "http://localhost:5000/api/tasks?page=1&limit=10", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","tasks"], "query": [{ "key": "page", "value": "1" }, { "key": "limit", "value": "10" }] }
+      }
+    },
+    {
+      "name": "Create Task",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Finish project plan\",\n  \"description\": \"Complete API and UI design tasks\",\n  \"status\": \"pending\",\n  \"priority\": \"high\",\n  \"due_date\": \"2026-08-31\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/tasks", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","tasks"] }
+      }
+    },
+    {
+      "name": "Get Task by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "http://localhost:5000/api/tasks/{{taskId}}", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","tasks","{{taskId}}"] }
+      }
+    },
+    {
+      "name": "Update Task",
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"in-progress\",\n  \"priority\": \"high\"\n}"
+        },
+        "url": { "raw": "http://localhost:5000/api/tasks/{{taskId}}", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","tasks","{{taskId}}"] }
+      }
+    },
+    {
+      "name": "Delete Task",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "http://localhost:5000/api/tasks/{{taskId}}", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","tasks","{{taskId}}"] }
+      }
+    },
+    {
+      "name": "Search Tasks",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "http://localhost:5000/api/tasks?search=project&limit=10", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","tasks"], "query": [{ "key": "search", "value": "project" }, { "key": "limit", "value": "10" }] }
+      }
+    },
+    {
+      "name": "Filter Tasks by Status",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "http://localhost:5000/api/tasks?status=done&limit=10", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","tasks"], "query": [{ "key": "status", "value": "done" }, { "key": "limit", "value": "10" }] }
+      }
+    },
+    {
+      "name": "Filter Tasks by Priority",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Authorization", "value": "Bearer {{token}}" }
+        ],
+        "url": { "raw": "http://localhost:5000/api/tasks?priority=high&limit=10", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["api","tasks"], "query": [{ "key": "priority", "value": "high" }, { "key": "limit", "value": "10" }] }
+      }
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": []
+      }
+    }
+  ]
+}
